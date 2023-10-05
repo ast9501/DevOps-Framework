@@ -25,3 +25,17 @@ resource "kubernetes_namespace_v1" "traefik_ns" {
     name = "traefik"
   }
 }
+
+resource "kubernetes_namespace_v1" "devops_ns" {
+  metadata {
+    annotations = {
+      name = "devops-system"
+    }
+
+    #labels = {
+    #  mylabel = "label-value"
+    #}
+
+    name = "devops-system"
+  }
+}
