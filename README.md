@@ -30,6 +30,23 @@ kubectl port-forward -n traefik $(kubectl get pods -n traefik --selector "app.ku
 for testing Traefik, see `tests/traefik` for more details
 
 # Service/domain mapping list
+| Service | Domain | NodePort | default user | default password |
+| -------- | -------- | -------- | -------- | ------- |
+| Jenkins     | jenkins.myhomelab.com     | None     | admin | Dynamic generate |
+| Gitea | git.myhomelab.com | None | 30180 | gitea_admin | adminadmin |
+| ArgoCD | argocd.myhomelab.com | 30080 | admin | Dynamic generate |
+
+# Jenkins
+* Get admin password
+```
+printf $(kubectl get secret --namespace devops-system jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
+```
+
+# ArgoCD
+* Get admin password
+```
+kubectl -n devops-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
 
 # Pre-commit hook
 ## commitlint
