@@ -31,9 +31,9 @@ for testing Traefik, see `tests/traefik` for more details
 
 # Service/domain mapping list
 | Service | Domain | NodePort | default user | default password |
-| -------- | -------- | -------- | -------- | ------- |
-| Jenkins     | jenkins.myhomelab.com     | None     | admin | Dynamic generate |
-| Gitea | git.myhomelab.com | None | 30180 | gitea_admin | adminadmin |
+| -------- | -------- | -------- | --------- | -------- |
+| Jenkins | jenkins.myhomelab.com  | None | admin | Dynamic generate |
+| Gitea | git.myhomelab.com | 30180 | gitea_admin | adminadmin |
 | ArgoCD | argocd.myhomelab.com | 30080 | admin | Dynamic generate |
 
 # Jenkins
