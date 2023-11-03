@@ -39,3 +39,12 @@ resource "kubernetes_namespace_v1" "devops_ns" {
     name = "devops-system"
   }
 }
+
+resource "kubernetes_namespace_v1" "storage" {
+  metadata {
+    annotations = {
+      name = "storage"
+    }
+    name = "storage"
+  }
+}
