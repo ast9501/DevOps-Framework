@@ -23,17 +23,15 @@ Declate IP pool range for metallb then it can assign Load balance IP to Traefik
 kubectl apply -f manifests/01-lb-pool.yaml
 ```
 
-### Config longhorn (CSI)
-In helm chart config, we declare default storage class to create volumes on nodes with "storage" label.
-Add tag to node through web UI: Node>(selected node)>Operation>Edit node and disks.
-
-Also we set the default replica num to 1.
-
 ### Visit to traefik dashboard
 ```
 kubectl port-forward -n traefik $(kubectl get pods -n traefik --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000 --address 0.0.0.0
 ```
 for testing Traefik, see `tests/traefik` for more details
+
+# Configuration
+## Longhorn
+We set default replica num to 1.
 
 # Service/domain mapping list
 | Service | Domain | NodePort | default user | default password |
@@ -41,6 +39,7 @@ for testing Traefik, see `tests/traefik` for more details
 | Jenkins | jenkins.myhomelab.com  | None | admin | Dynamic generate |
 | Gitea | git.myhomelab.com | 30180 | gitea_admin | adminadmin |
 | ArgoCD | argocd.myhomelab.com | 30080 | admin | Dynamic generate |
+| Longhorn | TBD | TBD | none | none |
 
 # Jenkins
 * Get admin password

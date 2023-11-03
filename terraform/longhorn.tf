@@ -5,7 +5,8 @@ resource "helm_release" "longhorn" {
   chart      = "longhorn"
   version    = "1.5.1"
 
-  # Run storage instance on labeled nodes
+  ## Run storage instance on labeled nodes
+  ## Add tag to node through web UI: Node>(selected node)>Operation>Edit node and disks.
   #set {
   #  name  = "persistence.defaultNodeSelector.enable"
   #  value = "true"
