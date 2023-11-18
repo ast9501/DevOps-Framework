@@ -5,10 +5,9 @@ resource "helm_release" "jenkins" {
   chart      = "jenkins"
   version    = "4.6.5"
 
-  set {
-    name  = "persistence.storageClass"
-    value = "nfs-client"
-  }
+  depends_on = [
+    helm_release.longhorn
+  ]
 
   set {
     name  = "controller.ingress.enabled"
@@ -30,8 +29,4 @@ resource "helm_release" "jenkins" {
     value = "jenkins.myhomelab.com"
   }
 
-  #set {
-  #  name = "persistence.storageClass"
-  #  value = "nfs-client"
-  #}
 }
