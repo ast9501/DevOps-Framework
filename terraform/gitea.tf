@@ -5,10 +5,9 @@ resource "helm_release" "gitea" {
   chart      = "gitea"
   version    = "8.3.0"
 
-  set {
-    name  = "global.storageClass"
-    value = "nfs-client"
-  }
+  depends_on = [
+    helm_release.longhorn
+  ]
 
   set {
     name  = "ingress.enabled"
@@ -49,9 +48,4 @@ resource "helm_release" "gitea" {
     name  = "service.http.nodePort"
     value = "30180"
   }
-
-  #set {
-  #  name = "persistence.storageClass"
-  #  value = "nfs-client"
-  #}
 }
