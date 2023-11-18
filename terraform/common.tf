@@ -1,17 +1,3 @@
-resource "kubernetes_namespace_v1" "metallb_ns" {
-  metadata {
-    annotations = {
-      name = "metallb-system"
-    }
-
-    #labels = {
-    #  mylabel = "label-value"
-    #}
-
-    name = "metallb-system"
-  }
-}
-
 resource "kubernetes_namespace_v1" "traefik_ns" {
   metadata {
     annotations = {
@@ -26,6 +12,20 @@ resource "kubernetes_namespace_v1" "traefik_ns" {
   }
 }
 
+resource "kubernetes_namespace_v1" "metallb_ns" {
+  metadata {
+    annotations = {
+      name = "metallb-system"
+    }
+
+    #labels = {
+    #  mylabel = "label-value"
+    #}
+
+    name = "metallb-system"
+  }
+}
+
 resource "kubernetes_namespace_v1" "devops_ns" {
   metadata {
     annotations = {
@@ -37,6 +37,20 @@ resource "kubernetes_namespace_v1" "devops_ns" {
     #}
 
     name = "devops-system"
+  }
+}
+
+resource "kubernetes_namespace_v1" "homelab_ns" {
+  metadata {
+    annotations = {
+      name = "homelab"
+    }
+
+    #labels = {
+    #  mylabel = "label-value"
+    #}
+
+    name = "homelab"
   }
 }
 
