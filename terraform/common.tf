@@ -26,6 +26,20 @@ resource "kubernetes_namespace_v1" "metallb_ns" {
   }
 }
 
+resource "kubernetes_namespace_v1" "life_ns" {
+  metadata {
+    annotations = {
+      name = "life"
+    }
+
+    #labels = {
+    #  mylabel = "label-value"
+    #}
+
+    name = "life"
+  }
+}
+
 resource "kubernetes_namespace_v1" "devops_ns" {
   metadata {
     annotations = {
