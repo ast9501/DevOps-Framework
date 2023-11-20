@@ -29,10 +29,25 @@ resource "helm_release" "photoprism" {
   #  value = "true"
   #}
 
-  #set {
-  #  name  = "persistence.originals.enabled"
-  #  value = "true"
-  #}
+  set {
+    name  = "persistence.originals.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "persistence.originals.mountPath"
+    value = "/photoprism/originals"
+  }
+
+  set {
+    name = "persistence.originals.accessMode"
+    value = "ReadWriteOnce"
+  }
+
+  set {
+    name = "persistence.originals.size"
+    value = "20Gi"
+  }
 
   set {
     name  = "mariadb.enabled"
