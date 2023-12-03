@@ -15,18 +15,13 @@ resource "helm_release" "jenkins" {
   }
 
   set {
-    name  = "controller.ingress.hosts[0].host"
-    value = "git.myhomelab.com"
-  }
-
-  set {
     name  = "controller.ingress.path"
     value = "/"
   }
 
   set {
     name  = "controller.ingress.hostName"
-    value = "jenkins.myhomelab.com"
+    value = "jenkins.alanshomelab.com"
   }
 
 }

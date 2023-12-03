@@ -12,7 +12,7 @@ resource "helm_release" "argocd" {
 
   set {
     name  = "server.ingress.hosts[0]"
-    value = "argocd.myhomelab.com"
+    value = "argocd.alanshomelab.com"
   }
 
   # Set server service type to NodePort

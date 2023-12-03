@@ -16,7 +16,7 @@ resource "helm_release" "gitea" {
 
   set {
     name  = "ingress.hosts[0].host"
-    value = "git.myhomelab.com"
+    value = "git.alanshomelab.com"
   }
 
   set {
