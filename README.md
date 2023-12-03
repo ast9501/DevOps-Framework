@@ -53,6 +53,9 @@ printf $(kubectl get secret --namespace devops-system jenkins -o jsonpath="{.dat
 kubectl -n devops-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 
+# Backup and restore
+see `docs/backup-restored`.
+
 # Pre-commit hook
 ## commitlint
 ```
