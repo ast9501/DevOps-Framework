@@ -47,6 +47,31 @@ We set default replica num to 1.
 printf $(kubectl get secret --namespace devops-system jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
 ```
 
+# Gitea
+## Enable ssh clone
+The ssh port is set to `30122`, if the `gitea-ssh` service is set to `ClusterIP` type:
+```
+gitea-ssh                          ClusterIP   None            <none>        22/TCP                       8d
+```
+
+apply the ingress rule:
+```
+kubectl apply -f manifests/02-gitea-ssh-config.yaml
+```
+The yaml will forward gitea-ssh-service:22 to traefik-ingressroute-port:30122
+
+Reference to the blog: https://blog.b1-systems.de/forwarding-ssh-traffic-inside-kubernetes-using-traefik
+
+## Enable webhook
+Config allowed webhook host in `gitea.tf`, for following example it will allow Jenkins listen to gitea webhook through host ip: `192.168.113.191` (gitea expose nodeport so Jenkins can call one of cluster server ip).
+```
+...
+  set {
+    name = "gitea.config.webhook.ALLOWED_HOST_LIST"
+    value = "192.168.113.191"
+  }
+...
+```
 # ArgoCD
 * Get admin password
 ```

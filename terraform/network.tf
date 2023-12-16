@@ -19,7 +19,12 @@ resource "helm_release" "traefik" {
   chart      = "traefik"
   version    = "v24.0.0"
 
-  #set {
-  #
-  #}
+  set {
+    name = "ports.gitea-ssh.port"
+    value = "30122"
+  }
+  set {
+    name = "ports.gitea-ssh.expose"
+    value = "true"
+  }
 }

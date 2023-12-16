@@ -48,4 +48,14 @@ resource "helm_release" "gitea" {
     name  = "service.http.nodePort"
     value = "30180"
   }
+
+  set {
+    name = "gitea.config.webhook.ALLOWED_HOST_LIST"
+    value = "192.168.113.191"
+  }
+
+  set {
+    name = "gitea.config.server.SSH_PORT"
+    value = "30122"
+  }
 }
