@@ -7,6 +7,15 @@
 terraform init
 ```
 
+## Generate self-signed ceritificate
+Generate self-signed certificate and mount on traefik.
+NOTICE: Please check the certificate issuer related setting in script (default cert for `*.alanshomelab.com`)!!!
+```
+# The script will create root CA and sign the certificate; after that create tls-secret in traefik namespace, and traefik config as configMap.
+cd scripts/
+./gen-cert.sh
+```
+
 ## Deploy network application (metallb, traefik)
 The file `terraform/network.tf` keep the network related application manifests
 ```
@@ -15,6 +24,7 @@ terraform apply
 since Traefik will wait for loadbalance IP bind, we need to declare usable ip range for metallb to asign loadbalancer ip to Traefik (in next step)
 
 ### Config metallb ip range
+>Config the unused ip as traefik loadbalancer ip.
 * Modify the ip range in `01-lb-pool.yaml`
 
 * Apply metallb ip-pool config during traefik deployment
@@ -36,9 +46,9 @@ We set default replica num to 1.
 # Service/domain mapping list
 | Service | Domain | NodePort | default user | default password |
 | -------- | -------- | -------- | --------- | -------- |
-| Jenkins | jenkins.myhomelab.com  | None | admin | Dynamic generate |
-| Gitea | git.myhomelab.com | 30180 | gitea_admin | adminadmin |
-| ArgoCD | argocd.myhomelab.com | 30080 | admin | Dynamic generate |
+| Jenkins | jenkins.alanshomelab.com  | None | admin | Dynamic generate |
+| Gitea | git.alanshomelab.com | 30180 | gitea_admin | adminadmin |
+| ArgoCD | argocd.alanshomelab.com | 30080 | admin | Dynamic generate |
 | Longhorn | TBD | TBD | none | none |
 
 # Jenkins
